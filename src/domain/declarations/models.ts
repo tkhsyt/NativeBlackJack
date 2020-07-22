@@ -12,3 +12,12 @@ export interface GameState {
   dealerHands: CardType[];
   isStandDealer: boolean;
 }
+
+export type Result = {
+  playerScore: number;
+  dealerScore: number;
+};
+
+export interface ResultState {
+  playingData: Result[];
+}
