@@ -17,8 +17,14 @@ storiesOf('CenteredView', module).add('default view', () => (
   </CenteredView>
 ));
 
-storiesOf('CenteredView', module).add('takahashi view', () => (
-  <CenteredView>
-    <Text>yeah!</Text>
-  </CenteredView>
-));
+storiesOf('CenteredView', module).add(
+  'takahashi view',
+  () => (
+    <CenteredView>
+      <Text>yeah!</Text>
+    </CenteredView>
+  ),
+  {
+    notes: 'A small component',
+  },
+);
