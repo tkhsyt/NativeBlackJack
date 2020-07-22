@@ -1,5 +1,6 @@
 import React, { FC, useEffect } from 'react';
 import styled from 'styled-components/native';
+import { Text } from 'react-native';
 import { store } from '../../../redux/store';
 import {
   setHitDealer,
@@ -7,51 +8,49 @@ import {
   setStandDealer,
   setStandPlayer,
   setInitializeGame,
-} from '../../../redux/modules/card';
-import { GameTableScreen } from './GameTableScreen';
+} from '../../../redux/modules/game';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  dealerHandSelector,
-  isStandDealerSelector,
-  isStandPlayerSelector,
-  playerHandSelector,
-} from '../../../redux/selectors/card';
+import { gameSelector } from '../../../redux/selectors/game';
+import { DealerPanel } from '../../organisms/DealerPanel';
+import { PlayerPanel } from '../../organisms/PlayerPanel';
+import { judgeHandStatus } from '../../../domain/logics/judgeHandStatus';
+import { calcHandsValue } from '../../../domain/logics/calcHandsValue';
+import { ShowDownPanel } from '../../organisms/ShowDownPanel';
 
 export const GameTable: FC = () => {
   type AppDispatch = typeof store.dispatch;
   const dispatch: AppDispatch = useDispatch();
-  const playerHands = useSelector(playerHandSelector);
-  const dealerHands = useSelector(dealerHandSelector);
-  const isStandPlayer = useSelector(isStandPlayerSelector);
-  const isStandDealer = useSelector(isStandDealerSelector);
+  const { playerHands, dealerHands, isStandPlayer, isStandDealer } = useSelector(gameSelector);
 
   useEffect(() => {
     dispatch(setInitializeGame());
   }, []);
 
+  const handleHitPlayer = () => dispatch(setHitPlayer());
+  const handleHitDealer = () => dispatch(setHitDealer());
+  const handleStandPlayer = () => dispatch(setStandPlayer(true));
+  const handleStandDealer = () => dispatch(setStandDealer(true));
+  const handleReloadGame = () => dispatch(setInitializeGame());
+
   return (
     <Component>
-      <GameTableScreen
-        playerHands={playerHands}
+      <DealerPanel
         dealerHands={dealerHands}
-        handleHitPlayer={() => {
-          dispatch(setHitPlayer());
-        }}
-        handleHitDealer={() => {
-          dispatch(setHitDealer());
-        }}
-        handleStandPlayer={() => {
-          dispatch(setStandPlayer(true));
-        }}
-        handleStandDealer={() => {
-          dispatch(setStandDealer(true));
-        }}
-        handleReloadGame={() => {
-          dispatch(setInitializeGame());
-        }}
         isStandPlayer={isStandPlayer}
-        isStandDealer={isStandDealer}
+        handleHitDealer={handleHitDealer}
+        handleStandDealer={handleStandDealer}
       />
+      <PlayerPanel playerHands={playerHands} handleHitPlayer={handleHitPlayer} handleStandPlayer={handleStandPlayer} />
+
+      <Text>{judgeHandStatus(calcHandsValue(playerHands))}</Text>
+
+      {isStandPlayer && isStandDealer && (
+        <ShowDownPanel
+          playerScore={calcHandsValue(playerHands)}
+          dealerScore={calcHandsValue(dealerHands)}
+          handleReloadGame={handleReloadGame}
+        />
+      )}
     </Component>
   );
 };

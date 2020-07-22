@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getInitialCards } from '../../domain/logics/getInitialCards';
-import { CardState } from '../../domain/declarations/models';
+import { GameState } from '../../domain/declarations/models';
 import { shuffle } from '../../domain/logics/shuffle';
 
 // TODO: あとでスライスをバラす
-export const initialState: CardState = {
+export const initialState: GameState = {
   deck: [],
   playerHands: [],
   isStandPlayer: false,
@@ -13,7 +13,7 @@ export const initialState: CardState = {
 };
 
 const slice = createSlice({
-  name: 'card',
+  name: 'game',
   initialState,
   reducers: {
     setInitializeGame: (state) => {

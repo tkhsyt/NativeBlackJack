@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
-import cardReducer from './modules/card';
+import gameReducer from './modules/game';
 
 const rootReducer = combineReducers({
-  card: cardReducer,
+  game: gameReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
