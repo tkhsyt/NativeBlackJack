@@ -13,11 +13,9 @@ interface Props {
 
 export const DealerPanel: FC<Props> = ({ dealerHands, isStandPlayer, handleHitDealer, handleStandDealer }) => {
   useEffect(() => {
-    if (isStandPlayer) {
-      calcHandsValue(dealerHands) <= 16 // nits: ここは再起処理になっている？
-        ? handleHitDealer()
-        : handleStandDealer();
-    }
+    calcHandsValue(dealerHands) <= 16 // nits: ここは再起処理になっている？
+      ? handleHitDealer()
+      : handleStandDealer();
   }, [isStandPlayer, dealerHands]);
 
   return (

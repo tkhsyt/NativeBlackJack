@@ -1,17 +1,18 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { GameTable } from '../Screen/GameTable';
+import { NavigationContainer } from '@react-navigation/native';
+import { RootNavigator } from '../../navigators';
 
 export const DefaultLayout: React.FC = () => {
   return (
-    <DefaultLayoutView>
-      <GameTable />
-    </DefaultLayoutView>
+    <NavigationContainer>
+      <DefaultLayoutView>
+        <RootNavigator />
+      </DefaultLayoutView>
+    </NavigationContainer>
   );
 };
 
 const DefaultLayoutView = styled.View`
   height: 100%;
-  align-items: center;
-  justify-content: center;
 `;

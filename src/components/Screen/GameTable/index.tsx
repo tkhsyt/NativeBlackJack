@@ -34,27 +34,39 @@ export const GameTable: FC = () => {
 
   return (
     <Component>
-      <DealerPanel
-        dealerHands={dealerHands}
-        isStandPlayer={isStandPlayer}
-        handleHitDealer={handleHitDealer}
-        handleStandDealer={handleStandDealer}
-      />
-      <PlayerPanel playerHands={playerHands} handleHitPlayer={handleHitPlayer} handleStandPlayer={handleStandPlayer} />
-
-      <Text>{judgeHandStatus(calcHandsValue(playerHands))}</Text>
-
-      {isStandPlayer && isStandDealer && (
-        <ShowDownPanel
-          playerScore={calcHandsValue(playerHands)}
-          dealerScore={calcHandsValue(dealerHands)}
-          handleReloadGame={handleReloadGame}
+      <ComponentInner>
+        <DealerPanel
+          dealerHands={dealerHands}
+          isStandPlayer={isStandPlayer}
+          handleHitDealer={handleHitDealer}
+          handleStandDealer={handleStandDealer}
         />
-      )}
+
+        <PlayerPanel
+          playerHands={playerHands}
+          handleHitPlayer={handleHitPlayer}
+          handleStandPlayer={handleStandPlayer}
+        />
+
+        <Text>{judgeHandStatus(calcHandsValue(playerHands))}</Text>
+
+        {isStandPlayer && isStandDealer && (
+          <ShowDownPanel
+            playerScore={calcHandsValue(playerHands)}
+            dealerScore={calcHandsValue(dealerHands)}
+            handleReloadGame={handleReloadGame}
+          />
+        )}
+      </ComponentInner>
     </Component>
   );
 };
 
 const Component = styled.View`
-  width: 90%;
+  background-color: #fff;
+  height: 100%;
+  justify-content: center;
+  padding: 10px;
 `;
+
+const ComponentInner = styled.View``;
