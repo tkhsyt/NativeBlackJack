@@ -6,7 +6,7 @@ import { Button } from '../atoms/Button';
 interface Props {
   playerScore: number;
   dealerScore: number;
-  handleReloadGame: () => void;
+  handleReloadGame: (playerScore: number, dealerScore: number) => void;
 }
 
 export const ShowDownPanel: FC<Props> = ({ playerScore, dealerScore, handleReloadGame }) => {
@@ -18,7 +18,7 @@ export const ShowDownPanel: FC<Props> = ({ playerScore, dealerScore, handleReloa
         <ResultItem>Dealer {dealerScore}</ResultItem>
         <ResultItem>{gameResult(playerScore, dealerScore)}</ResultItem>
       </Result>
-      <Button onPress={handleReloadGame}>one more</Button>
+      <Button onPress={() => handleReloadGame(playerScore, dealerScore)}>one more</Button>
     </Component>
   );
 };

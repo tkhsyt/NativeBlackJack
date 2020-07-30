@@ -16,6 +16,8 @@ import { PlayerPanel } from '../../organisms/PlayerPanel';
 import { judgeHandStatus } from '../../../domain/logics/judgeHandStatus';
 import { calcHandsValue } from '../../../domain/logics/calcHandsValue';
 import { ShowDownPanel } from '../../organisms/ShowDownPanel';
+import { setResultData } from '../../../redux/modules/result';
+import { gameResult } from '../../../domain/logics/gameResult';
 
 export const GameTable: FC = () => {
   type AppDispatch = typeof store.dispatch;
@@ -30,7 +32,17 @@ export const GameTable: FC = () => {
   const handleHitDealer = () => dispatch(setHitDealer());
   const handleStandPlayer = () => dispatch(setStandPlayer(true));
   const handleStandDealer = () => dispatch(setStandDealer(true));
-  const handleReloadGame = () => dispatch(setInitializeGame());
+  const handleReloadGame = (playerScore: number, dealerScore: number) => {
+    dispatch(setInitializeGame());
+    dispatch(
+      setResultData({
+        id: 111, // TODO: ランダムidを生成するロジック作る
+        result: gameResult(playerScore, dealerScore),
+        playerScore: playerScore,
+        dealerScore: dealerScore,
+      }),
+    );
+  };
 
   return (
     <Component>

@@ -16,3 +16,4 @@ const slice = createSlice({
 });
 
 export default slice.reducer;
+export const { setResultData } = slice.actions;
