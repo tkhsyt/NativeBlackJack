@@ -16,6 +16,7 @@ const slice = createSlice({
   initialState,
   reducers: {
     setInitializeGame: (state) => {
+      // TODO: ここのロジック超キモいのでなんとかしたい
       state.deck = shuffle(getInitialCards());
       state.isStandPlayer = false;
       state.isStandDealer = false;
