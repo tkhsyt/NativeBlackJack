@@ -3,7 +3,6 @@ import { getInitialCards } from '../../domain/logics/getInitialCards';
 import { GameState } from '../../domain/declarations/models';
 import { shuffle } from '../../domain/logics/shuffle';
 
-// TODO: あとでスライスをバラす
 export const initialState: GameState = {
   deck: [],
   playerHands: [],
