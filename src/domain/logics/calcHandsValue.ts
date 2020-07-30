@@ -1,8 +1,8 @@
 import { CARD_NUMBERS } from '../const/cardNumbers';
 import { CARD_ARRAY_ROLE } from '../const/cardArrayRole';
 import { CardType } from '../declarations/models';
-// imo: logicsには全部テストを書いてみてほしいです。
-// テスト駆動の気持ちを味わってほしいので、一回頭をまっさらな状態にしてから書いてほしいですね
+
+// TODO: この辺のロジックたちのどこかがきっとおかしい（たまにゲームが狂ってる時ある）
 
 const formatSoftCount = (result: number) => {
   return result <= 10 ? 11 : 1;
