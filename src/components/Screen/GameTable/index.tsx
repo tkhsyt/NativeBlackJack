@@ -36,7 +36,7 @@ export const GameTable: FC = () => {
     dispatch(setInitializeGame());
     dispatch(
       setResultData({
-        id: 111, // TODO: ランダムidを生成するロジック作る
+        id: 111, // TODO: ランダムidを生成するロジック作る・formatResultData関数作る
         result: gameResult(playerScore, dealerScore),
         playerScore: playerScore,
         dealerScore: dealerScore,
