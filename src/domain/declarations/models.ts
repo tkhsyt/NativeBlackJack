@@ -14,10 +14,12 @@ export interface GameState {
 }
 
 export type Result = {
+  id: number;
+  result: string;
   playerScore: number;
   dealerScore: number;
 };
 
 export interface ResultState {
-  playingData: Result[];
+  data: Result[];
 }

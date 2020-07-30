@@ -1,15 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { ResultState } from '../../domain/declarations/models';
+import { Result, ResultState } from '../../domain/declarations/models';
 
-// TODO: あとでスライスをバラす
 export const initialState: ResultState = {
-  playingData: [],
+  data: [],
 };
 
 const slice = createSlice({
   name: 'result',
   initialState,
-  reducers: {},
+  reducers: {
+    setResultData: (state, { payload }: { payload: Result }) => {
+      state.data = [...state.data, payload];
+    },
+  },
 });
 
 export default slice.reducer;
