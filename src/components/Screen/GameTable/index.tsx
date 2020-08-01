@@ -19,6 +19,8 @@ import { ShowDownPanel } from '../../organisms/ShowDownPanel';
 import { setResultData } from '../../../redux/modules/result';
 import { formatResultData } from '../../../domain/logics/formatResultData';
 import { writeResultData } from '../../../realm';
+import Realm from 'realm';
+import { RESULT_SCHEMA } from '../../../domain/declarations/schema';
 
 export const GameTable: FC = () => {
   type AppDispatch = typeof store.dispatch;
@@ -27,6 +29,13 @@ export const GameTable: FC = () => {
 
   useEffect(() => {
     dispatch(setInitializeGame());
+    // TODO: createAsyncThunkを上手く使って起動時の読み込み処理かけたらイケてそう
+    Realm.open({
+      schema: [RESULT_SCHEMA],
+    }).then((re) => {
+      console.log(JSON.parse(JSON.stringify(re.objects(RESULT_SCHEMA.name))));
+      re.close();
+    });
   }, []);
 
   const handleHitPlayer = () => dispatch(setHitPlayer());

@@ -1,5 +1,6 @@
 import { CARD_NUMBERS } from '../const/cardNumbers';
 import { CARD_SUITS } from '../const/cardSuits';
+import { SCHEMA_NAME } from '../const/schemaName';
 
 export type Suit = typeof CARD_SUITS[keyof typeof CARD_SUITS];
 export type Number = typeof CARD_NUMBERS[keyof typeof CARD_NUMBERS];
@@ -23,3 +24,13 @@ export type Result = {
 export interface ResultState {
   data: Result[];
 }
+
+export type ResultSchema = {
+  name: typeof SCHEMA_NAME.GAME_RESULT;
+  properties: {
+    id: string;
+    result: string;
+    playerScore: string;
+    dealerScore: string;
+  };
+};
