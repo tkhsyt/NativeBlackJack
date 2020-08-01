@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import styled from 'styled-components/native';
 import { Text } from 'react-native';
 import { store } from '../../../redux/store';
@@ -17,7 +17,8 @@ import { judgeHandStatus } from '../../../domain/logics/judgeHandStatus';
 import { calcHandsValue } from '../../../domain/logics/calcHandsValue';
 import { ShowDownPanel } from '../../organisms/ShowDownPanel';
 import { setResultData } from '../../../redux/modules/result';
-import { gameResult } from '../../../domain/logics/gameResult';
+import { formatResultData } from '../../../domain/logics/formatResultData';
+import { writeResultData } from '../../../realm';
 
 export const GameTable: FC = () => {
   type AppDispatch = typeof store.dispatch;
@@ -34,14 +35,8 @@ export const GameTable: FC = () => {
   const handleStandDealer = () => dispatch(setStandDealer(true));
   const handleReloadGame = (playerScore: number, dealerScore: number) => {
     dispatch(setInitializeGame());
-    dispatch(
-      setResultData({
-        id: 111, // TODO: ランダムidを生成するロジック作る・formatResultData関数作る
-        result: gameResult(playerScore, dealerScore),
-        playerScore: playerScore,
-        dealerScore: dealerScore,
-      }),
-    );
+    dispatch(setResultData(formatResultData(playerScore, dealerScore)));
+    writeResultData(playerScore, dealerScore);
   };
 
   return (
