@@ -11,3 +11,5 @@ export const RESULT_SCHEMA: ResultSchema = {
     dealerScore: 'int',
   },
 };
+
+export const SCHEMA_LIST = [RESULT_SCHEMA];

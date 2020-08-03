@@ -25,12 +25,13 @@ export interface ResultState {
   data: Result[];
 }
 
+type RealmTypeConverter<T> = T extends number ? 'int' : T extends string ? 'string' : never;
+
+type DeepRealmTypeConverter<T> = {
+  [key in keyof T]: RealmTypeConverter<T[key]>;
+};
+
 export type ResultSchema = {
   name: typeof SCHEMA_NAME.GAME_RESULT;
-  properties: {
-    id: string;
-    result: string;
-    playerScore: string;
-    dealerScore: string;
-  };
+  properties: DeepRealmTypeConverter<Result>;
 };
