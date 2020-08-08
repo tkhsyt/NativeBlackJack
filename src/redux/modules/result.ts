@@ -7,7 +7,7 @@ export const initialState: ResultState = {
   data: [],
 };
 
-export const loadResultData = createAsyncThunk<Result[]>('loadResultData  ', async () => {
+export const loadResultData = createAsyncThunk<Result[]>('loadResultData', async () => {
   const realm: Realm = await Realm.open({
     schema: [RESULT_SCHEMA],
     schemaVersion: 1,

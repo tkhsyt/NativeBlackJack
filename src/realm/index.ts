@@ -6,6 +6,7 @@ import { formatResultData } from '../domain/logics/formatResultData';
 export function writeResultData(playerScore: number, dealerScore: number) {
   Realm.open({
     schema: [RESULT_SCHEMA],
+    schemaVersion: 1,
   }).then((realm) => {
     realm.write(() => {
       realm.create(SCHEMA_NAME.GAME_RESULT, formatResultData(playerScore, dealerScore));
