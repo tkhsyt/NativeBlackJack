@@ -1,6 +1,6 @@
-import { CARD_NUMBERS } from '../const/cardNumbers';
-import { CARD_ARRAY_ROLE } from '../const/cardArrayRole';
-import { CardType } from '../declarations/models';
+import { CARD_NUMBERS } from '../../const/cardNumbers';
+import { CARD_ARRAY_ROLE } from '../../const/cardArrayRole';
+import { CardType } from '../../declarations/models';
 
 // TODO: この辺のロジックたちのどこかがきっとおかしい（たまにゲームが狂ってる時ある）
 

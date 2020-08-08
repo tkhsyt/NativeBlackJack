@@ -1,4 +1,4 @@
-import { gameResult } from './gameResult';
+import { gameResult } from '../gameResult';
 
 export const formatResultData = (playerScore: number, dealerScore: number) => {
   return {
