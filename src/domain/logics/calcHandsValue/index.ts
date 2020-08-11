@@ -1,16 +1,8 @@
 import { CARD_NUMBERS } from '../../const/cardNumbers';
 import { CARD_ARRAY_ROLE } from '../../const/cardArrayRole';
 import { CardType } from '../../declarations/models';
-
-// TODO: この辺のロジックたちのどこかがきっとおかしい（たまにゲームが狂ってる時ある）
-
-const formatSoftCount = (result: number) => {
-  return result <= 10 ? 11 : 1;
-};
-
-const formatFaceCard = (cardValue: number) => {
-  return Math.min(10, cardValue);
-};
+import { formatSoftCount } from '../formatSoftCount';
+import { formatFaceCard } from '../formatFaceCard';
 
 export const calcHandsValue = (hands: CardType[]) => {
   const handsValue = hands.map((hand) => hand[CARD_ARRAY_ROLE.NUMBER]);
